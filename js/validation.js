@@ -1,57 +1,43 @@
-
-
-var ValdiationFunctions = Object.extend({
 	
-	/*check valid figure moves BEGIN*/
-	checkBishop: function(initial_position, next_position){
-		var generateLoc = new AttackedFieldgenerator();
-		return contains(generateLoc.bishop(initial_position),next_position);
-	}
-	checkRook: function(initial_position, next_position){
-		var generateLoc = new AttackedFieldgenerator();
-		return contains(generateLoc.rook(initial_position),next_position);
-	}
-	checkQueen: function(initial_position, next_position){
-		var generateLoc = new AttackedFieldgenerator();
-		return contains(generateLoc.queen(initial_position),next_position);
-	}
-	checkKing: function(initial_position, next_position){
-		var generateLoc = new AttackedFieldgenerator();
-		return contains(generateLoc.king(initial_position),next_position);
-	}
-	checkPawn: function(initial_position, next_position){
-		var generateLoc = new AttackedFieldgenerator();
-		return contains(generateLoc.pawn(initial_position),next_position);
-		//different movement for normal and attacking
-	}
-	checkKnight: function(initial_position, next_position){
-		var generateLoc = new AttackedFieldgenerator();
-		return contains(generateLoc.knight(initial_position),next_position);
-	}
-	/*check valid figure moves END*/
+	// checkRook: function(initial_position, next_position){
+	// 	return contains(chessEngine.rook(initial_position),next_position);
+	// }
+	// checkQueen: function(initial_position, next_position){
+	// 	return contains(chessEngine.queen(initial_position),next_position);
+	// }
+	// checkKing: function(initial_position, next_position){
+	// 	return contains(chessEngine.king(initial_position),next_position);
+	// }
+	// checkPawn: function(initial_position, next_position){
+	// 	return contains(chessEngine.pawn(initial_position),next_position);
+	// }
+	// checkKnight: function(initial_position, next_position){
+	// 	return contains(chessEngine.knight(initial_position),next_position);
+	// }
+
+
 	
-	checkForCheck :function (all_attacked_positions, kings_position){
-		if(contains(all_attacked_positions,kings_position))return true;
-		else return false;
-	}
 	
-	checkForMate: function(kings_position, all_attacked_positions){
-		var kings_attacking_positions = generator.king(kings_position);
-		if(containsAll(all_attacked_positions,kings_attacking_positions) && checkForCheck(all_attacked_positions,kings_position)===true)return true;
-	}
+			
+	
+	
+	// checkForCheck :function (all_attacked_positions, kings_position){
+	// 	if(contains(all_attacked_positions,kings_position))return true;
+	// 	else return false;
+	// },
+	
+	// checkForMate: function(kings_position, all_attacked_positions){
+	// 	var kings_attacking_positions = generator.king(kings_position);
+	// 	if(containsAll(all_attacked_positions,kings_attacking_positions) && checkForCheck(all_attacked_positions,kings_position)===true)return true;
+	// },
 
-	 checkForStalemate: function(kings_position, all_own_attacked_positions, all_attacked_positions){
-		if(checkForCheck(all_attacked_positions,kings_position)===false && all_own_attacked_positions.length === 0)return true;
-	}
+	//  checkForStalemate: function(kings_position, all_own_attacked_positions, all_attacked_positions){
+	// 	if(checkForCheck(all_attacked_positions,kings_position)===false && all_own_attacked_positions.length === 0)return true;
+	// },
 
-	checkForDraw: function(){
-		//...
-	}
-})
-
-
-
-
+	// checkForDraw: function(){
+		
+	// }
 
 
 

@@ -1,0 +1,713 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style type="text/css">
+		/* http://meyerweb.com/eric/tools/css/reset/ 
+			   v2.0 | 20110126
+			   License: none (public domain)
+			*/
+
+			html, body, div, span, applet, object, iframe,
+			h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+			a, abbr, acronym, address, big, cite, code,
+			del, dfn, em, img, ins, kbd, q, s, samp,
+			small, strike, strong, sub, sup, tt, var,
+			b, u, i, center,
+			dl, dt, dd, ol, ul, li,
+			fieldset, form, label, legend,
+			table, caption, tbody, tfoot, thead, tr, th, td,
+			article, aside, canvas, details, embed, 
+			figure, figcaption, footer, header, hgroup, 
+			menu, nav, output, ruby, section, summary,
+			time, mark, audio, video {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				font-size: 100%;
+				font: inherit;
+				vertical-align: baseline;
+			}
+			/* HTML5 display-role reset for older browsers */
+			article, aside, details, figcaption, figure, 
+			footer, header, hgroup, menu, nav, section {
+				display: block;
+			}
+			body {
+				line-height: 1;
+			}
+			ol, ul {
+				list-style: none;
+			}
+			blockquote, q {
+				quotes: none;
+			}
+			blockquote:before, blockquote:after,
+			q:before, q:after {
+				content: '';
+				content: none;
+			}
+			table {
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+
+			.letter{
+				width: 70px;
+				height: 70px;
+				float: left;
+			}
+			.number{
+				width: 560px;
+				height: 70px;
+				
+			}
+			.container {
+				width: 560px;
+				border: 1px solid black;
+				margin: auto;
+				position: relative;
+				top: -175px;
+				
+				
+			}
+			.drop {
+				
+			}
+			.graves{
+				width: 200px;
+				height: 558px;
+				border: 1px solid grey;
+				float:right;
+				position: relative;
+				top:-730px;
+				left: -150px;
+			}
+
+			.tomb {
+				border: 1px solid black;
+				width: 150px;
+				height: 91px;
+				float: right;
+			}
+			.num{
+				width: 47px;
+				height: 89px;
+				border: 2px solid black;
+			}
+			.fields{
+				width: 20px;
+				height: 20px;
+				border: 1px solid grey;
+				float: left;
+				text-align: center;
+
+				
+			}
+			.engine{
+				width: 176px;
+				height: 22px;
+				
+			}
+			/*.dragBishop1{
+				position: absolute;
+			}
+			.dragRook2{
+				position: absolute;
+			}*/
+		</style>
+		
+	</head>
+	<body>
+		<div class="engineContainer">
+			<div class="engine">
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+			</div>
+			<div class="engine">
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+			</div>
+			<div class="engine">
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+			</div>
+			<div class="engine">
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+			</div>
+			<div class="engine">
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+			</div>
+			<div class="engine">
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+			</div>
+			<div class="engine">
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+			</div>
+			<div class="engine">
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+				<div class="fields"></div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="number">
+				<div class="letter"><img class="dragRook1" id="whiterook"  src="images/white_rook.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragKnight1" id="whiteknight"   src="images/white_knight.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragBishop1" id="whitebishop" src="images/white_bishop.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragKing" id="whiteking"  src="images/white_king.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragQueen" id="whitequeen"  src="images/white_queen.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragBishop2" id="whitebishop"  src="images/white_bishop.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragKnight2" id="whiteknight"  src="images/white_knight.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragRook2" id="whiterook"   src="images/white_rook.svg" width="70" height="70"></div>
+			<!-- 	<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"><img class="dragRook1" id="whiterook"  src="images/white_rook.svg" width="70" height="70"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"><img class="dragRook2" id="whiterook"   src="images/white_rook.svg" width="70" height="70"></div> -->
+			</div>
+			<div class="number">
+				<div class="letter"><img class="dragPawn1" id="whitepawn" src="images/white_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn2" id="whitepawn" src="images/white_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn3" id="whitepawn" src="images/white_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn4" id="whitepawn" src="images/white_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn5" id="whitepawn" src="images/white_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn6" id="whitepawn" src="images/white_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn7" id="whitepawn" src="images/white_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn8" id="whitepawn" src="images/white_pawn.svg" width="70" height="70"></div>
+			<!-- 	<div class="letter"></div> 
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div> -->
+			</div>
+			<div class="number">
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+			</div>
+			<div class="number">
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+			</div>
+			<div class="number">
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+			</div>
+			<div class="number">
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+			</div>
+			<div class="number">
+				<!-- <div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div> -->
+				<div class="letter"><img class="dragPawn1" id="blackpawn" src="images/black_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn2" id="blackpawn" src="images/black_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn3" id="blackpawn" src="images/black_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn4" id="blackpawn" src="images/black_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn5" id="blackpawn" src="images/black_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn6" id="blackpawn" src="images/black_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn7" id="blackpawn" src="images/black_pawn.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragPawn8" id="blackpawn" src="images/black_pawn.svg" width="70" height="70"></div>
+			</div>
+			<div class="number">
+				<!-- <div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"><img class="dragBishop2" id="blackbishop"  src="images/black_bishop.svg" width="70" height="70"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"><img class="dragRook1" id="blackrook"  src="images/black_rook.svg" width="70" height="70"></div> -->
+				<div class="letter"><img class="dragRook1" id="blackrook"  src="images/black_rook.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragKnight1" id="blackknight"   src="images/black_knight.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragBishop1" id="blackbishop" src="images/black_bishop.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragKing" id="blackking"  src="images/black_king.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragQueen" id="blackqueen"  src="images/black_queen.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragBishop2" id="blackbishop"  src="images/black_bishop.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragKnight2" id="blackknight"  src="images/black_knight.svg" width="70" height="70"></div>
+				<div class="letter"><img class="dragRook2" id="blackrook"   src="images/black_rook.svg" width="70" height="70"></div>
+			</div>
+		</div>
+		<div class="graves">
+			<div class="tomb"></div>
+			<div class="tomb"></div>
+			<div class="tomb"></div>
+			<div class="tomb"></div>
+			<div class="tomb"></div>
+			<div class="tomb"></div>
+			<div class="num"></div>
+			<div class="num"></div>
+			<div class="num"></div>
+			<div class="num"></div>
+			<div class="num"></div>
+			<div class="num"></div>
+		</div>
+		<script type="text/javascript" src="lib/shims.js"></script>
+        <script type="text/javascript" src="lib/underscore-min.js"></script>
+        <script type="text/javascript" src="lib/jquery.min.js"></script>
+        <script type="text/javascript" src="jqueryUI/ui/jquery-ui.js"></script>
+        <script type="text/javascript" src="lib/shiro/shiro-class.js"></script>
+        <script type="text/javascript" src="lib/shiro/shiro-eventemitter.js"></script>
+        <script type="text/javascript" src="attackedFields.js"></script>
+        <script type="text/javascript" src="validation.js"></script>
+		<script type="text/javascript">
+        $(function() {
+			
+        	
+
+		    function MatrixWrite (matrix){
+				var key;
+	            for(var i = 0; i < matrix.length; i++){
+	            	for (var j = 0; j < matrix[i].length; j++) {
+	            		key = matrix[i][j];
+	            		$('.engine').eq(i).children().eq(j).text(key);
+	            	};
+	                
+	            }    
+	        }
+
+
+			function drawBoard(){
+				
+				function countPositions (limit) {
+					var positions = [];
+					for (var i = 0; i < limit; i++) {
+						positions.push(i);
+					}
+					return positions;
+				}
+				var pos = countPositions($('.letter').length);
+
+				for (var k = 0; k<8; k++) {
+					var order = k % 2 === 1 ? 1 : 2;
+					for(var i = 0; i<8; i++ ) {
+						var color; 
+						if (order === 1 ) {
+							i % 2 === 1 ? color = 'white' : color ='grey';
+							$('.letter').eq(pos.shift()).css("background-color", color);
+						} else {
+							i % 2 === 1 ? color = 'grey' : color ='white';
+				     		$('.letter').eq(pos.shift()).css("background-color", color);
+				     	}
+				     	
+				    }//end second for
+			    }//end first for
+			}//end function
+			
+			drawBoard();
+			
+			$('.letter').filter(function(i, el){
+			    return $(this).data('type') == 'figure';
+			})
+			
+
+			
+
+			$('.letter').addClass('drop');
+			var figMeth;
+			var figProp;
+			var figColor;
+			
+
+			$('.dragBishop1').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Bishop1 = [$(this).parent().parent().index(),$(this).parent().index()];
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+					console.log(figColor,figMeth,figProp)
+				}
+
+			});
+			$('.dragBishop2').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Bishop2 = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+					
+				}
+
+			});
+			$('.dragQueen').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Queen = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+					
+				}
+
+			});
+			$('.dragKing').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.King = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+					
+				}
+
+			});
+			$('.dragRook1').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Rook1 = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+					
+				}
+
+			});
+			$('.dragRook2').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Rook2 = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+					
+				}
+
+			});
+			$('.dragKnight1').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Knight1 = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+			}
+
+			});
+			$('.dragKnight2').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Knight2 = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+				}
+
+			});
+			$('.dragPawn1').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Pawn1 = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+				}
+
+			});
+			$('.dragPawn2').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Pawn2 = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+				}
+
+			});
+			$('.dragPawn3').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Pawn3 = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+				}
+
+			});
+			$('.dragPawn4').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Pawn4 = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+				}
+
+			});
+			$('.dragPawn5').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Pawn5 = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+				}
+
+			});
+			$('.dragPawn6').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Pawn6 = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+				}
+
+			});
+			$('.dragPawn7').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Pawn7 = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+				}
+
+			});
+			$('.dragPawn8').draggable({
+				cursor: 'move',
+				revert: true,
+				revertDuration: 60,
+				start:function(){
+					initPos.Pawn8 = [$(this).parent().parent().index(),$(this).parent().index()]
+					figMeth = $(this).attr('id').substring(5);
+					figColor = $(this).attr('id').substring(0,5);
+					figProp = $(this).attr('class').split(' ')[0].substring(4);
+				}
+
+			});
+
+
+			
+			var initPos = {
+				Bishop1 : [],
+				Bishop2 : [],
+				Knight1 : [],
+				Knight2 : [],
+				Queen   : [],
+				King    : [],
+				Rook1   : [],
+				Rook2   : []
+ 			}
+ 			var marker = {
+ 				white: {
+ 					Rook1:    1,
+	 				Knight1:  2,
+	 				Bishop1:  3,
+	 				King:     4,
+	 				Queen:    5,
+	 				Bishop2:  6,
+	 				Knight2:  7,
+	 				Rook2:    8,
+	 				Pawn1:    11,
+	 				Pawn2:    12,
+	 				Pawn3:    13,
+	 				Pawn4:    14,
+	 				Pawn5:    15,
+	 				Pawn6:    16,
+	 				Pawn7:    17,
+	 				Pawn8:    18
+ 				},
+ 				black: {
+ 					Rook1:    -1,
+	 				Knight1:  -2,
+	 				Bishop1:  -3,
+	 				King:     -4,
+	 				Queen:    -5,
+	 				Bishop2:  -6,
+	 				Knight2:  -7,
+	 				Rook2:    -8,
+	 				Pawn1:    -11,
+	 				Pawn2:    -12,
+	 				Pawn3:    -13,
+	 				Pawn4:    -14,
+	 				Pawn5:    -15,
+	 				Pawn6:    -16,
+	 				Pawn7:    -17,
+	 				Pawn8:    -18
+ 				}
+ 				
+ 			}
+
+
+			
+			var chessEngine = new AttackedFieldgenerator();	
+			
+			var board1 = generateEmptyTable();
+			var rooPos = chessEngine.rook(board1,6,2);
+			var bisPos = chessEngine.bishop(board1,4,4);
+			
+			
+				       
+		    var board = generateEmptyTable();
+			
+			function contains(arr, pair){
+		        for (var i = 0; i < arr.length; i++) {
+		            if( arr[i][0] === pair[0] && arr[i][1] === pair[1] ) return true;
+		        }
+		        return false;
+		    }
+			
+			$(".drop").droppable({
+
+				drop: function(ev, ui) {
+					
+					var dropped = ui.draggable;
+		            var droppedOn = $(this);
+					var next = [$(this).parent().index(), $(this).index()]
+		           
+					var eatingValidation = contains(chessEngine[figMeth](board,initPos[figProp][0],initPos[figProp][1],figColor).em, next)
+		            var movingValidation = contains(chessEngine[figMeth](board,initPos[figProp][0],initPos[figProp][1],figColor).pm, next)
+		            
+		        	var eatable = chessEngine[figMeth](board,initPos[figProp][0],initPos[figProp][1],figColor).em
+		          	
+		          	console.log(eatingValidation,eatable,figMeth,figColor)
+		   
+		         	if (movingValidation) {
+		          		
+		          		board[initPos[figProp][0]][initPos[figProp][1]] = 0;
+		          		board[next[0]][next[1]] = marker[figColor][figProp]
+		          		MatrixWrite(board);
+		            	
+		            	$(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
+		            	
+		            } else if (eatingValidation){
+		            	
+		            	board[initPos[figProp][0]][initPos[figProp][1]] = 0;
+		          		board[next[0]][next[1]] = marker[figColor][figProp]
+		          		MatrixWrite(board);
+
+		            	var deadOne = droppedOn.children()
+		            	
+						$(deadOne).detach().css({top: 0,left: 0}).appendTo('.tomb:nth-child(1)')
+		            	$(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
+		          
+					} else {
+		            	return false;
+		            }
+		           
+		        }
+		    });
+			
+	
+		});
+		</script>
+	</body>
+</html>
