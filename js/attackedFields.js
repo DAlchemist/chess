@@ -1,4 +1,6 @@
 
+
+
         /*********************************************************/    
                         /*AUXILIARY FUNCTIONS*/
 
@@ -30,7 +32,7 @@
         } 
 
         function validator (tabela, ver, hor) {
-           return ver>=0 && hor>=0 && ver<8 && hor<8 && tabela[ver][hor]<1;
+           return ver>=0 && hor>=0 && ver<8 && hor<8;
         }  
 
         function generateEmptyTable(){
@@ -44,8 +46,11 @@
                       [0,0,0,0,0,0,0,0]
                      ];
         }
-        var AttackedFieldgenerator = Object.extend({
 
+        
+        
+        var AttackedFieldgenerator = Object.extend({
+            
             //generator prima tabelu ver, hor i na osnovu toga generise funkcije
             bishop: function (tabela,ver,hor,side){
                  
@@ -81,11 +86,13 @@
                             PositionsMatrix.push([ver+(i*mnozioc_VER),hor+(i*mnozioc_HOR)]);
                         } else if(checkSide[side](i)) {
                             EatMatrix.push([ver+(i*mnozioc_VER),hor+(i*mnozioc_HOR)]);
+                            break
                         }else{
                             break
                         }
                     }  
                 }
+
                 mapFigure(-1,+1,NORTH_EAST());
                 mapFigure(+1,-1,SOUTH_WEST());
                 mapFigure(+1,+1,SOUTH_EAST());
@@ -121,21 +128,25 @@
                     }
                     
                     function mapFigure(mnozioc_VER, mnozioc_HOR, granica){
-                         checkSide = {
+                        
+                        checkSide = {
                             black: function(i) { return tabela[ver+(i*mnozioc_VER)][hor+(i*mnozioc_HOR)]>0 },
                             white: function(i) { return tabela[ver+(i*mnozioc_VER)][hor+(i*mnozioc_HOR)]<0 }
                         }
-                         for (var i = 1; i<=granica; i++) {
-                           
+                        
+                        for (var i = 1; i<=granica; i++) {
                             if(tabela[ver+(i*mnozioc_VER)][hor+(i*mnozioc_HOR)]===0){
                                 PositionsMatrix.push([ver+(i*mnozioc_VER),hor+(i*mnozioc_HOR)]);
                             } else if(checkSide[side](i)) {
                                 EatMatrix.push([ver+(i*mnozioc_VER),hor+(i*mnozioc_HOR)]);
+                                 break
                             }else{
                                 break
                             }
                         }  
                     }
+
+
                     mapFigure(-1,+1,NORTH_EAST());
                     mapFigure(+1,-1,SOUTH_WEST());
                     mapFigure(+1,+1,SOUTH_EAST());
@@ -152,9 +163,11 @@
                             /*ROOK-ATTACK POSITIONS*/
 
             rook: function(tabela,ver,hor,side){
+                
                 var PositionsMatrix = [];
                 var EatMatrix = [];
                 var checkSide;
+                
                 function mapFigure(mnozioc_VER, mnozioc_HOR, granica){
                     checkSide = {
                         black: function(i) { return tabela[ver+(i*mnozioc_VER)][hor+(i*mnozioc_HOR)]>0 },
@@ -165,11 +178,13 @@
                             PositionsMatrix.push([ver+(i*mnozioc_VER),hor+(i*mnozioc_HOR)]);
                         }else if(checkSide[side](i)) {
                             EatMatrix.push([ver+(i*mnozioc_VER),hor+(i*mnozioc_HOR)]);
+                            break
                         }else{
                             break
                         }
                     }  
                 }
+                
                 mapFigure(-1,0,ver);
                 mapFigure(+1,0,(7-ver));
                 mapFigure(0,-1,hor);
@@ -190,46 +205,57 @@
                 var checkSide;
 
                 function do_it (element) {
+                    
                     var v = Math.abs(ver + element[0]);
                     var h = Math.abs(hor + element[1]);
-
+                    
                     checkSide = {
                         black: function() { return tabela[v][h]>0 },
                         white: function() { return tabela[v][h]<0 }
                     }
 
-                    if(tabela[v][h]===0){
+                    if(validator(tabela,v,h) && tabela[v][h]===0){
                         PositionsMatrix.push([v,h]);
-                    } else if(checkSide[side]()){
-                        EatMatrix = [v,h];
-                    } else {
-                        console.log('did it')
+                    }else if(validator(tabela,v,h) && checkSide[side]()){
+                        EatMatrix.push([v,h]);
                     }
                 };
                 
                 KING_ATTACK_DIRECTIONS.forEach(do_it);
-                console.log(EatMatrix)
+                
                 return { pm: PositionsMatrix, em: EatMatrix }
             },
 
             /*********************************************************/    
                             /*KNIGHT ATTACK-POSITIONS*/
              
-            knight: function(tabela,ver,hor){
+            knight: function(tabela,ver,hor,side){
+                
                 var KNIGHT_ATTACK_DIRECTIONS = [[-2, +1], [-2, -1], [-1, -2], 
                                                 [+1, -2], [+2, -1], [+2, +1],
                                                 [-1, +2], [+1, +2]];
                 var PositionsMatrix = [];
                 var EatMatrix = [];
-                
-                
+                var opposingSide;
+
+
                 function do_it (element) {
-                    var v = ver + element[0];
-                    var h = hor + element[1];
-                    if(validator(tabela, v, h)){
+                    
+                    var v = Math.abs(ver + element[0]);
+                    var h = Math.abs(hor + element[1]);
+
+                    var checkSide = {
+                        black: function() { return tabela[v][h]>0 },
+                        white: function() { return tabela[v][h]<0 }
+                    }
+                    
+                    if(validator(tabela,v,h) && tabela[v][h]===0){
                         PositionsMatrix.push([v,h]);
+                    } else if(validator(tabela,v,h) && checkSide[side]()){
+                        EatMatrix.push([v,h]);
                     }
                 };
+
                 KNIGHT_ATTACK_DIRECTIONS.forEach(do_it);
 
                 return {pm: PositionsMatrix, em:EatMatrix}
@@ -243,24 +269,24 @@
             pawn: function(tabela,ver,hor,side){
                 
                 var direction;
+                var PositionsMatrix = [];
+                var EatMatrix = [];
+                var checkSide,v,h;
                 
+               
                 if (side==="black") {
                     direction = -1;
                 } else {
                     direction = 1
                 }
 
+                
                 var PAWN_ATTACK_POSITIONS = ["attack",[direction,-1],[direction,+1]] 
                 var PAWN_MOVE_POSITIONS = ["move",[direction,0]]
-                
-                
-                var PositionsMatrix = [];
-                var EatMatrix = [];
-                var checkSide,v,h;
 
                 
-
                 function findPositions (arr) {
+                    
                     for (var i = 1; i < arr.length; i++) {
                         v = ver + arr[i][0];
                         h = hor + arr[i][1];
@@ -271,12 +297,9 @@
                         }
 
                         if (arr[0]==="attack" && checkSide[side]()) {
-                            console.log('can i eat', checkSide[side]() )
                             EatMatrix.push([v,h])
-                        }else if(arr[0]==="move" && tabela[v][h]===0){
+                        } else if (arr[0]==="move" && tabela[v][h]===0){
                             PositionsMatrix.push([v,h])
-                        }else{
-                            break
                         }
                     }
                 }

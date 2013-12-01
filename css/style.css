@@ -61,3 +61,61 @@
 .test-last.test-failed .test-value {
     background-color: #C14543;
 }
+
+
+.letter{
+    width: 70px;
+    height: 70px;
+    float: left;
+}
+.number{
+    width: 560px;
+    height: 70px;
+    
+}
+.container {
+    width: 560px;
+    border: 1px solid black;
+    margin: auto;
+    position: relative;
+    margin-top: 50px;
+}
+
+.drop {
+    
+}
+.graves{
+    width: 200px;
+    height: 558px;
+    border: 1px solid grey;
+    float:right;
+    position: relative;
+    top:-730px;
+    left: -150px;
+}
+
+.tomb {
+    border: 1px solid black;
+    width: 150px;
+    height: 91px;
+    float: right;
+}
+.num{
+    width: 47px;
+    height: 89px;
+    border: 2px solid black;
+}
+.fields{
+    width: 20px;
+    height: 20px;
+    border: 1px solid grey;
+    float: left;
+    text-align: center;
+
+    
+}
+.engine{
+    width: 176px;
+    height: 22px;
+    
+}
