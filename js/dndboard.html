@@ -108,10 +108,16 @@
 	            	for (var j = 0; j < matrix[i].length; j++) {
 	            		key = matrix[i][j];
 	            		$('.engine').eq(i).children().eq(j).text(key);
-	            	};
+	            	}
 	            }    
 	        }
 
+	        function contains(arr, pair){
+		        for (var i = 0; i < arr.length; i++) {
+		            if( arr[i][0] === pair[0] && arr[i][1] === pair[1] ) return true;
+		        }
+		        return false;
+		    }
 
 			function drawBoard(){
 				
@@ -157,11 +163,23 @@
 				})
 			}
 
+			function createFigures(matrix){
+
+		    	for (var k = 0; k < 8; k++) {
+					matrix[0][k] = 1;
+					matrix[1][k] = 1;
+				}
+
+				for (var i = 0; i < 8; i++) {
+					matrix[6][i] = -1;
+					matrix[7][i] = -1;
+				}
+			}
+
+
 			$('.letter').addClass('drop');
 			
-			var figMeth;
-			var figProp;
-			var figColor;
+			var figMeth, figProp, figColor;
 			
 			var initPos = { 
 				Bishop1 : [], Bishop2 : [], Knight1 : [], 
@@ -187,9 +205,9 @@
 
  			var figures_array = [
  				'.dragBishop1','.dragBishop2','.dragQueen','.dragKing',
-				 '.dragRook1','.dragRook2','.dragKnight1','.dragKnight2',
-				 '.dragPawn1','.dragPawn2','.dragPawn3','.dragPawn4',
-				 '.dragPawn5','.dragPawn6','.dragPawn7','.dragPawn8'
+				'.dragRook1','.dragRook2','.dragKnight1','.dragKnight2',
+				'.dragPawn1','.dragPawn2','.dragPawn3','.dragPawn4',
+				'.dragPawn5','.dragPawn6','.dragPawn7','.dragPawn8'
 			];
 
 			
@@ -199,52 +217,10 @@
 			var chessEngine = new AttackedFieldgenerator();	
 			var board = generateEmptyTable();
 
-		    board[0][0] = 1;
-		    board[0][1] = 2;
- 			board[0][2] = 3;
- 			board[0][3] = 5;
- 			board[0][4] = 4;
- 			board[0][5] = 6;
- 			board[0][6] = 7;
- 			board[0][7] = 8;
+		   
+			createFigures(board);
 
- 			board[1][0] = 11;
-		    board[1][1] = 12;
- 			board[1][2] = 13;
- 			board[1][3] = 15;
- 			board[1][4] = 14;
- 			board[1][5] = 16;
- 			board[1][6] = 17;
- 			board[1][7] = 18;
-
-			board[7][0] = -1;
- 			board[7][1] = -2;
- 			board[7][2] = -3;
- 			board[7][3] = -4;
- 			board[7][4] = -5;
- 			board[7][5] = -6;
- 			board[7][6] = -7;
- 			board[7][7] = -8;
-
- 			board[6][0] = -11;
-		    board[6][1] = -12;
- 			board[6][2] = -13;
- 			board[6][3] = -15;
- 			board[6][4] = -14;
- 			board[6][5] = -16;
- 			board[6][6] = -17;
- 			board[6][7] = -18;
-
-      		MatrixWrite(board);
-			
-			function contains(arr, pair){
-		        for (var i = 0; i < arr.length; i++) {
-		            if( arr[i][0] === pair[0] && arr[i][1] === pair[1] ) return true;
-		        }
-		        return false;
-		    }
-
-		    var moveCounter = 0;
+			var moveCounter = 0;
 		    var allowed = 'white';
 
 		  	$(".drop").droppable({
@@ -254,7 +230,7 @@
 					var dropped = ui.draggable;
 		            var droppedOn = $(this);
 					var next = [$(this).parent().index(), $(this).index()]
-		           	console.log(figMeth,figProp,figColor,initPos[figProp][0],initPos[figProp][1]);
+		           
 					var eatingValidation = contains(chessEngine[figMeth](board,initPos[figProp][0],initPos[figProp][1],figColor).em, next)
 		            var movingValidation = contains(chessEngine[figMeth](board,initPos[figProp][0],initPos[figProp][1],figColor).pm, next)
 		            
