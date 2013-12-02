@@ -1,55 +1,14 @@
-        /*********************************************************/    
-                        /*AUXILIARY FUNCTIONS*/
-
-        function MatrixWrite (matrix){
-            for(var i = 0; i < matrix.length; i++){
-                for(var j = 0; j<matrix[i].length; j++ ){
-                    document.write(matrix[i][j]+" ");
-                }
-                document.write("<br>")
-            }    
-        }
-            
-        function setOne(tabela,ver, hor) {
-            if(ver>=0 && hor>=0)tabela[ver][hor] = 1;
-        }
-
-        function contains(niz, par){
-            for (var i = 0; i < niz.length; i++) {
-                if( niz[i][0] === par[0] && niz[i][1] === par[1] ) return true;
-            }
-            return false;
-        }
-
-        function containsAll (niz1,niz2) {
-           for (var i = 0; i < niz2.length; i++) {
-               if( !contains(niz1,niz2[i]) )return false;
-           };
-           return true;
-        } 
-
         function validator (tabela, ver, hor) {
            return ver>=0 && hor>=0 && ver<8 && hor<8;
         }  
 
-        function generateEmptyTable(){
-            return   [[0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0],
-                      [0,0,0,0,0,0,0,0]
-                     ];
-        }
-
-        
-        
-        var AttackedFieldgenerator = Object.extend({
+        var ChessEngine = (function() {
             
-            //generator prima tabelu ver, hor i na osnovu toga generise funkcije
-            bishop: function (tabela,ver,hor,side){
+            function ChessEngine() {
+            
+            };
+            
+            ChessEngine.prototype.bishop = function(tabela,ver,hor,side){
                  
                 var PositionsMatrix = [];
                 var EatMatrix = [];
@@ -97,11 +56,11 @@
                 
                return {pm: PositionsMatrix, em: EatMatrix}
                //im attacking these positions and im attacking this figure on these cooridinates(AttackedFigureMatrix)
-            },   
+            };   
             /*********************************************************/    
                         /*QUEEN-ATTACK POSITIONS*/
 
-            queen: function (tabela,ver,hor,side){
+            ChessEngine.prototype.queen = function(tabela,ver,hor,side){
                    
                     var PositionsMatrix = [];
                     var EatMatrix = [];
@@ -154,12 +113,12 @@
                     mapFigure(0,+1,(7-hor));
                    
                     return {pm: PositionsMatrix, em: EatMatrix}
-                },
+                };
 
             /*********************************************************/
                             /*ROOK-ATTACK POSITIONS*/
 
-            rook: function(tabela,ver,hor,side){
+            ChessEngine.prototype.rook = function(tabela,ver,hor,side){
                 
                 var PositionsMatrix = [];
                 var EatMatrix = [];
@@ -188,12 +147,12 @@
                 mapFigure(0,+1,(7-hor));
                            
                return { pm: PositionsMatrix, em: EatMatrix}
-            },
+            };
 
             /*********************************************************/    
                             /*KING ATTACK-POSITIONS*/
 
-            king: function(tabela,ver,hor,side){
+            ChessEngine.prototype.king = function(tabela,ver,hor,side){
                 var KING_ATTACK_DIRECTIONS =  [[-1, -1], [-1, 0], [-1, 1], 
                                                [0, -1], [0, 1], [1, -1], 
                                                [1, 0], [1, 1]]
@@ -221,12 +180,12 @@
                 KING_ATTACK_DIRECTIONS.forEach(do_it);
                 
                 return { pm: PositionsMatrix, em: EatMatrix }
-            },
+            };
 
             /*********************************************************/    
                             /*KNIGHT ATTACK-POSITIONS*/
              
-            knight: function(tabela,ver,hor,side){
+            ChessEngine.prototype.knight = function(tabela,ver,hor,side){
                 
                 var KNIGHT_ATTACK_DIRECTIONS = [[-2, +1], [-2, -1], [-1, -2], 
                                                 [+1, -2], [+2, -1], [+2, +1],
@@ -256,14 +215,14 @@
                 KNIGHT_ATTACK_DIRECTIONS.forEach(do_it);
 
                 return {pm: PositionsMatrix, em:EatMatrix}
-            },
+            };
 
             
 
             /*********************************************************/    
                             /*PAWN ATTACK-POSITIONS*/
 
-            pawn: function(tabela,ver,hor,side){
+            ChessEngine.prototype.pawn = function(tabela,ver,hor,side){
                 
                 var direction;
                 var PositionsMatrix = [];
@@ -272,9 +231,9 @@
                 
                
                 if (side==="black") {
-                    direction = -1;
+                    direction = 1;
                 } else {
-                    direction = 1
+                    direction = -1
                 }
 
                 
@@ -306,10 +265,11 @@
                 
                 
                 return {pm: PositionsMatrix, em: EatMatrix}
-            }
+            };
 
+            return ChessEngine;
 
-        });
+        })();
         /*********************************************************/  
    
 

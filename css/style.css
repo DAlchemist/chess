@@ -1,5 +1,8 @@
  @import url(http://fonts.googleapis.com/css?family=Ropa+Sans);
 
+body{
+    text-align: center;
+}
 .test-container {
     width: 981px;
     margin: auto;
@@ -78,7 +81,7 @@
     border: 1px solid black;
     margin: auto;
     position: relative;
-    margin-top: 50px;
+    top:-175px;
 }
 
 .drop {
@@ -105,19 +108,17 @@
     height: 89px;
     border: 2px solid black;
 }
+
 .fields{
     width: 20px;
     height: 20px;
     border: 1px solid grey;
     float: left;
     text-align: center;
-
-    
 }
 .engine{
     width: 176px;
     height: 22px;
-    
 }
 
 img{
