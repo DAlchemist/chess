@@ -1,25 +1,285 @@
+<!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Chess</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
+		<div class="container">
+			<div class="number">
+				<div class="letter"><img class="rook" id="black"  src="images/blackrook.svg"></div>
+				<div class="letter"><img class="knight" id="black"   src="images/blackknight.svg" ></div>
+				<div class="letter"><img class="bishop" id="black" src="images/blackbishop.svg"></div>
+				<div class="letter"><img class="queen" id="black"  src="images/blackqueen.svg" ></div>
+				<div class="letter"><img class="king" id="black"  src="images/blackking.svg" ></div>
+				<div class="letter"><img class="bishop" id="black"  src="images/blackbishop.svg" ></div>
+				<div class="letter"><img class="knight" id="black"  src="images/blackknight.svg" ></div>
+				<div class="letter"><img class="rook" id="black"   src="images/blackrook.svg" ></div>
+			</div>
+			<div class="number">
+				<div class="letter"><img class="pawn" id="black" src="images/blackpawn.svg"></div>
+				<div class="letter"><img class="pawn" id="black" src="images/blackpawn.svg"></div>
+				<div class="letter"><img class="pawn" id="black" src="images/blackpawn.svg"></div>
+				<div class="letter"><img class="pawn" id="black" src="images/blackpawn.svg"></div>
+				<div class="letter"><img class="pawn" id="black" src="images/blackpawn.svg"></div>
+				<div class="letter"><img class="pawn" id="black" src="images/blackpawn.svg"></div>
+				<div class="letter"><img class="pawn" id="black" src="images/blackpawn.svg"></div>
+				<div class="letter"><img class="pawn" id="black" src="images/blackpawn.svg"></div>
+			</div>
+			<div class="number">
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+			</div>
+			<div class="number">
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+			</div>
+			<div class="number">
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+			</div>
+			<div class="number">
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+				<div class="letter"></div>
+			</div>
+			<div class="number">
+				<div class="letter"><img class="pawn" id="white" src="images/whitepawn.svg"></div>
+				<div class="letter"><img class="pawn" id="white" src="images/whitepawn.svg"></div>
+				<div class="letter"><img class="pawn" id="white" src="images/whitepawn.svg"></div>
+				<div class="letter"><img class="pawn" id="white" src="images/whitepawn.svg"></div>
+				<div class="letter"><img class="pawn" id="white" src="images/whitepawn.svg"></div>
+				<div class="letter"><img class="pawn" id="white" src="images/whitepawn.svg"></div>
+				<div class="letter"><img class="pawn" id="white" src="images/whitepawn.svg"></div>
+				<div class="letter"><img class="pawn" id="white" src="images/whitepawn.svg"></div>
+			</div>
+			<div class="number">
+				<div class="letter"><img class="rook" id="white"  src="images/whiterook.svg"></div>
+				<div class="letter"><img class="knight" id="white"   src="images/whiteknight.svg" ></div>
+				<div class="letter"><img class="bishop" id="white" src="images/whitebishop.svg"></div>
+				<div class="letter"><img class="queen" id="white"  src="images/whitequeen.svg" ></div>
+				<div class="letter"><img class="king" id="white"  src="images/whiteking.svg" ></div>
+				<div class="letter"><img class="bishop" id="white"  src="images/whitebishop.svg" ></div>
+				<div class="letter"><img class="knight" id="white"  src="images/whiteknight.svg" ></div>
+				<div class="letter"><img class="rook" id="white"   src="images/whiterook.svg" ></div>
+			</div>
+		</div>
 		
+		<script type="text/javascript" src="lib/underscore-min.js"></script>
+        <script type="text/javascript" src="lib/jquery-2.0.3.min.js"></script>
+       	<script type="text/javascript" src="lib/jqueryUI/ui/jquery-ui.js"></script>
+     	<script type="text/javascript" src="js/engine.js"></script>
+        <script type="text/javascript">
+        
+        $(function() {
+			
+        	function contains(arr, pair){
+		        for (var i = 0; i < arr.length; i++) {
+		            if( arr[i][0] === pair[0] && arr[i][1] === pair[1] ) return true;
+		        }
+		        return false;
+		    }
+
+		     function generateEmptyTable(){
+	            return   [[0,0,0,0,0,0,0,0],
+	                      [0,0,0,0,0,0,0,0],
+	                      [0,0,0,0,0,0,0,0],
+	                      [0,0,0,0,0,0,0,0],
+	                      [0,0,0,0,0,0,0,0],
+	                      [0,0,0,0,0,0,0,0],
+	                      [0,0,0,0,0,0,0,0],
+	                      [0,0,0,0,0,0,0,0]
+	                     ];
+	        }
+
+		    function MatrixWrite (matrix){
+				var key;
+	            for(var i = 0; i < matrix.length; i++){
+	            	for (var j = 0; j < matrix[i].length; j++) {
+	            		key = matrix[i][j];
+	            		$('.engine').eq(i).children().eq(j).text(key);
+	            	}
+	            }    
+	        }
+			
+			function drawBoard(){
+				
+				function countPositions (limit) {
+					var positions = [];
+					for (var i = 0; i < limit; i++) {
+						positions.push(i);
+					}
+					return positions;
+				}
+				var pos = countPositions($('.letter').length);
+
+				for (var k = 0; k<8; k++) {
+					var order = k % 2 === 1 ? 1 : 2;
+					for(var i = 0; i<8; i++ ) {
+						var color; 
+						if (order === 1 ) {
+							color = i % 2 === 1 ? 'white' : 'grey';
+							$('.letter').eq(pos.shift()).css("background-color", color);
+						} else {
+							color = i % 2 === 1 ? 'grey' :'white';
+				     		$('.letter').eq(pos.shift()).css("background-color", color);
+				     	}
+				     	
+				    }//end second for
+			    }//end first for
+			}//end function
+			
+			function enableDraggable(element){
+				var elementClass = '.'+element;
+				$(elementClass).draggable({
+					cursor: 'move',
+					revert: true,
+					revertDuration: 60,
+					start:function(){
+						initialPosition[element] = [$(this).parent().parent().index(),$(this).parent().index()]
+						figureType =  $(this).attr('class').split(' ')[0];
+						figColor = $(this).attr('id');
+					}
+				})
+			}
+
+			function createFigures(matrix,direction){
+				
+				for (var k = 0; k < 8; k++) {
+					matrix[direction[0]][k] = 1;
+					matrix[direction[1]][k] = 1;
+				}
+
+				for (var i = 0; i < 8; i++) {
+					matrix[direction[2]][i] = -1;
+					matrix[direction[3]][i] = -1;
+				}
+			}
 
 
+			var figureType, figureType, figColor;
+			
+			var initialPosition = { 
+				bishop : [], knight : [], queen : [], 
+				king : [], rook : []
+			}
 
+			var marker = {
+ 				white: {
+ 					rook: 1, knight: 1, bishop: 1, 
+ 					king: 1, queen: 1, pawn: 1
+ 				},
 
-		<!-- libraries -->
-		<script type="text/javascript" src="js/lib/shims.js"></script>
-		<script type="text/javascript" src="js/lib/underscore-min.js"></script>
-		<script type="text/javascript" src="js/lib/jquery.min.js"></script>
-		<script type="text/javascript" src="js/lib/shiro/shiro-class.js"></script>
-		<script type="text/javascript" src="js/lib/shiro/shiro-eventemitter.js"></script>
+ 				black: {
+ 					rook: -1, knight: -1, bishop: -1, 
+ 					king: -1, queen: -1, pawn: -1
+ 				}
+ 			}
+
 		
-		<!-- application -->
-		<script type="text/javascript" src="js/attackedFields.js"></script>
-		<script type="text/javascript" src="js/validation.js"></script>
-		<script type="text/javascript" src="js/app.js"></script>
+			var figures_array = [
+ 				'bishop','queen','king',
+				'rook','knight','pawn',
+			];
+
+			/*******************************************************************************/
+			/*GAME STARTER*/
+			/*******************************************************************************/
+			
+			var direction = [6,7,0,1];	
+			
+			var board = generateEmptyTable();
+			var testBoard = generateEmptyTable();
+			var chessEngine = new ChessEngine()
+
+			createFigures(board,direction);
+
+			drawBoard();
+			$('.letter').addClass('drop');
+			
+			
+			/*make images draggable*/
+			figures_array.forEach(enableDraggable);
+
+			MatrixWrite(board);
+
+			/*******************************************************************************/
+
+			
+			var moveCounter = 0;
+		    var allowed = 'white';
+
+		  	$(".drop").droppable({
+
+				drop: function(ev, ui) {
+					
+					var dropped = ui.draggable;
+		            var droppedOn = $(this);
+					var next = [$(this).parent().index(), $(this).index()]
+		            
+		          
+
+		           	var eatMatrix = chessEngine[figureType](board,initialPosition[figureType][0],initialPosition[figureType][1],figColor).em;
+		           	var positionsMatrix = chessEngine[figureType](board,initialPosition[figureType][0],initialPosition[figureType][1],figColor).pm;
+		           	
+					
+					var eatingValidation = contains(eatMatrix, next);
+		            var movingValidation = contains(positionsMatrix, next)
+
+		        	if (movingValidation ) {
+
+		          		board[initialPosition[figureType][0]][initialPosition[figureType][1]] = 0;
+		          		board[next[0]][next[1]] = marker[figColor][figureType]
+		          		MatrixWrite(board);
+		          		
+		          		allowed = moveCounter%2===0 ? "black" : "white";
+		          		moveCounter++;
+
+		            	$(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
+		            	
+		            } else if (eatingValidation && allowed===figColor){
+		            	
+		            	board[initialPosition[figureType][0]][initialPosition[figureType][1]] = 0;
+		          		board[next[0]][next[1]] = marker[figColor][figureType]
+		          		MatrixWrite(board);
+
+		          		allowed = moveCounter%2===0 ? "black" : "white";
+		          		moveCounter++;
+
+		            	var eaten = droppedOn.children()
+		            	
+						$(eaten).detach().css({top: 0,left: 0});
+		            	$(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
+		          
+					} else {
+		            	return false;
+		            }
+		        }
+		    });
+		});
+		</script>
 	</body>
-
 </html>
